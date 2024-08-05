@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1><% title %></h1>
+    <div style="display: flex; gap: 100px">
+      <%- include('./layout') %>
+      <div>
+        <h2>Message: <%= post.message %></h2>
+        <h4>Date: <%= post.date_formatted %></h4>
+        <h4>Author: <%= post.author.displyname %></h4>
+
+        <p>Do you really want to delete this Post?</p>
+        <form method="POST">
+          <div class="form.group">
+            <input type="hidden" name="postid" value="<%= post.id %>" />
+            <br />
+
+            <button type="submit" class="btn-primary">Delete</button>
+          </div>
+        </form>
+        <br />
+        <% if (errors) { %> <% errors.forEach(error => { %>
+        <li>
+          <p><%= error.msg %></p>
+        </li>
+        <% }) %> <% } %> <% if (message !== null) { %>
+        <p><%= message %></p>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

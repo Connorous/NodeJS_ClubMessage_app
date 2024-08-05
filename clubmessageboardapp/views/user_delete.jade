@@ -1,0 +1,21 @@
+extends layout
+
+block content
+
+  h1= title
+  br
+
+  h4 #[strong Email:] #{user.email}
+  h4 #[strong Display Name:] #{user.email}
+  if user.member 
+    p Is a member 
+  if user.admin 
+    p Is an admin
+ 
+  p Do you really want to delete this User? 
+
+    form(method='POST')
+      div.form-group
+        input#userid.form-control(type='hidden', name='userid', value=user._id )
+
+      button.btn.btn-primary(type='submit') Delete

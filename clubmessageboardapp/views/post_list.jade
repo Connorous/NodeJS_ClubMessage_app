@@ -1,0 +1,62 @@
+extends layout
+
+block content
+  h1= title
+
+  if user!==underfined
+    if user.admin
+      p Welcome Administrator #{user.displayname}!
+    else if user.member
+      p Welcome Member #{user.displayname}!
+    else 
+      p Welcome #{user.displayname}!
+
+  br
+  br
+
+  if post_list.length
+    ul
+      h2 Club Board Posts:
+      each post in post_list
+        
+          h3 #{post.message}
+          if user!==underfined
+            if user.displayname === post.author.displayname
+              p you posted this
+              a(href='/delete-post/'+post._id) Remove
+              br
+            else if user.admin 
+              a(href='/delete-post/'+post._id) Remove
+              br
+            else if user.member
+              p posted by #{post.author.displayname} on: #{post.date_formatted}
+              br
+          br
+              
+            
+
+  else
+    p There are no club board posts.
+
+
+  br
+  br
+  br
+  br
+
+
+   
+  if !user
+    p Already have an account? Log In Here:
+    a(href='/login')
+      button.btn.btn-primary() Login
+    br 
+ 
+    
+    
+  if !user
+    br
+    p Don't have an account? Register Here:
+    a(href='/register')
+      button.btn.btn-primary() Register 
+    

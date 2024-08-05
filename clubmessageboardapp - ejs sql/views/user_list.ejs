@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div style="display: flex; gap: 100px">
+      <%- include('./layout') %>
+      <div>
+        <h1><%= title %></h1>
+        <br />
+        <br />
+
+        <h2>Club Board Posts</h2>
+        <% if (user_list) { %> <% } %>
+        <ul>
+          <% if (user_list.length) { %> <% user_list.forEach(user => { %>
+
+          <li>
+            <h4>Email: <%= user.email %></h4>
+            <h4>Display Name: <%= user.displayname %></h4>
+
+            <% if (user.admin) { %>
+            <p>Is an admin.</p>
+            <% } else if (user.member) { %>
+            <p>Is a member.</p>
+            <% } else { %>
+            <p>Is not a member.</p>
+            <% } %>
+            <a href="<%= '/edit-user-privileges/' + user.id %>"
+              ><button>Edit Privileges</button></a
+            >
+            <br />
+            <br />
+            <a href="<%= '/delete-user/' + user.id %>"
+              ><button>Delete</button></a
+            >
+          </li>
+          <% }) %> <% } %>
+        </ul>
+        <br />
+      </div>
+    </div>
+  </body>
+</html>

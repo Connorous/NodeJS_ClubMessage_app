@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div style="display: flex; gap: 100px">
+      <%- include('./layout') %>
+      <div>
+        <h1><%= title %></h1>
+        <% if (user) { %> <% if (user.admin) { %>
+        <p>Welcome Administrator <%= user.displayname %></p>
+        <% } else if (user.member) { %>
+        <p>Welcome Member <%= user.displayname %></p>
+        <% } else { %>
+        <p>Welcome <%= user.displayname %></p>
+        <% } %> <% } %>
+
+        <h2>Club Board Posts</h2>
+        <ul>
+          <% if (post_list.length) { %> <% post_list.forEach(post => { %>
+          <li>
+            <h2><%= post.message %></h2>
+
+            <% if (user) { %> <% if (user.member) { %>
+            <p>Author: <%= post.author %></p>
+            <p>Date: <%= post.date %></p>
+            <% } %> <% } %> <% if (user) { %> <% if (user.admin) { %>
+            <a href="<%='/delete-post/' + post.id %>">Remove</a>
+            <% } else if (post.author===user.email) { %>
+            <p>You posted this</p>
+            <a href="<%='/delete-post/' + post.id %>">Remove</a>
+            <% } %> <% } %> <% }) %>
+          </li>
+          <% } else { %>
+          <p>There are no posts.</p>
+          <% } %>
+        </ul>
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <% if (!user) { %>
+        <p>Already have an account? Log In Here:</p>
+        <a href="/login"><button class="btn-primary">Login</button></a>
+        <br />
+        <br />
+        <p>Don't have an account? Register Here:</p>
+        <a href="/register"><button class="btn-primary">Register</button></a>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

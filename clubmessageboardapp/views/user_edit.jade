@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1=title
+
+  h4 #[strong Email:] #{user.email}
+  h4 #[strong Display Name:] #{user.email}
+  form(method='POST')
+       div.form-group
+         label(for='member') Member?:
+         input#member.form-control(type="checkbox" name='member' value=user.admin )
+       div.form-group
+         label(for='admin') Admin?:
+         input#admin.form-control(type="checkbox" name='admin' value=user.admin )
+       input#userid.form-control(type='hidden', name='userid', value=user._id )
+
+       button.btn.btn-primary(type='submit') Submit
+
+  br
+  br
+
+
+
+  p #{message}
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1><% title %></h1>
+    <div style="display: flex; gap: 100px">
+      <%- include('./layout') %>
+      <div>
+        <form method="POST">
+          <div class="form.group">
+            <label for="email">Email</label>
+            <input
+              type="text"
+              placeholder="hacker#hack.com"
+              name="email"
+              required
+            />
+            <br />
+
+            <label for="displayname">Display Name</label>
+            <input
+              type="text"
+              placeholder="hacker123"
+              name="displayname"
+              required
+            />
+            <br />
+
+            <label for="password">Email</label>
+            <input
+              type="text"
+              placeholder="password"
+              name="password"
+              required
+            />
+            <br />
+
+            <label for="confirmpassowrd">Confirm Password</label>
+            <input
+              type="text"
+              placeholder="passowrd"
+              name="confirmpassowrd"
+              required
+            />
+            <br />
+
+            <label for="admin">Admin?:</label>
+            <input type="checkbox" name="admin" />
+            <br />
+
+            <label for="member">Member?:</label>
+            <input type="checkbox" name="member" />
+            <br />
+
+            <button type="submit" class="btn-primary">Submit</button>
+          </div>
+        </form>
+        <br />
+        <% if (errors) { %> <% errors.forEach(error => { %>
+        <li>
+          <p><% error.msg %></p>
+        </li>
+        <% }) %> <% } %> <% if (message !== null) { %>
+        <p><%= message %></p>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

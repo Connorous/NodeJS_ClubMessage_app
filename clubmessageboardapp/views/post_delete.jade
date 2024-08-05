@@ -1,0 +1,20 @@
+extends layout
+
+block content
+
+  h1= title
+  br
+
+  h2 #[strong Message:] #{post.message}
+  h4 #[strong Date:] #{post.date_formatted}
+  h4 #[strong Author:] #{post.author.displayname}
+ 
+  p Do you really want to delete this Post?
+
+    form(method='POST')
+      div.form-group
+        input#postid.form-control(type='hidden', name='postid', value=post._id )
+      
+
+      button.btn.btn-primary(type='submit') Delete
+

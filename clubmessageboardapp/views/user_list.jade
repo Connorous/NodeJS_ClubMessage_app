@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+  if user_list.length
+    ul
+      each user in user_list
+        li
+          h4 Email: #{user.email}
+          h4 Display Name: #{user.displayname}
+          if user.member 
+            p Is a member 
+          if user.admin 
+            p Is an admin
+          a(href='/edit-user-privileges/'+user._id)
+            button.btn.btn-primary() Edit Privileges 
+          br
+          br
+          a(href='/delete-user/'+user._id)
+            button.btn.btn-primary() Delete 
+          br
+          br
+          br
+
+  else
+    p There are no items.

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1><% title %></h1>
+    <div style="display: flex; gap: 100px">
+      <%- include('./layout') %>
+      <div>
+        <h4>Email: <%= user.email %></h4>
+        <h4>Display name: <%= user.displayname %></h4>
+        <form method="POST">
+          <div class="form.group">
+            <label for="admin">Admin?:</label>
+            <% if (user.admin) { %>
+            <input type="checkbox" name="admin" checked="<%= user.admin %>" />
+            <% } else { %>
+            <input type="checkbox" name="admin" />
+            <% } %>
+            <br />
+            <label for="member">Member?:</label>
+            <% if (user.member) { %>
+            <input type="checkbox" name="member" checked="<%= user.member %>" />
+            <% } else { %>
+            <input type="checkbox" name="member" />
+            <% } %>
+            <br />
+
+            <input type="hidden" name="userid" value="<%= user.id %>" />
+            <br />
+
+            <button type="submit" class="btn-primary">Submit</button>
+          </div>
+        </form>
+        <br />
+        <% if (errors) { %> <% errors.forEach(error => { %>
+        <li>
+          <p><%= error.msg %></p>
+        </li>
+        <% }) %> <% } %> <% if (message !== null) { %>
+        <p><%= message %></p>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

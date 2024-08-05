@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1><% title %></h1>
+    <div style="display: flex; gap: 100px">
+      <%- include('./layout') %>
+      <div>
+        <form method="POST">
+          <div class="form.group">
+            <label for="email">Email</label>
+            <input
+              type="text"
+              placeholder="hacker#hack.com"
+              name="email"
+              required
+            />
+            <br />
+            <% if (title!=="Log In") { %>
+            <label for="displayname">Display Name</label>
+            <input
+              type="text"
+              placeholder="hacker123"
+              name="displayname"
+              required
+            />
+            <br />
+            <% } %>
+            <label for="password">Password</label>
+            <input
+              type="text"
+              placeholder="password"
+              name="password"
+              required
+            />
+            <br />
+            <% if (title!=="Log In") { %>
+            <label for="confirmpassword">Confirm Password</label>
+            <input
+              type="text"
+              placeholder="password"
+              name="confirmpassword"
+              required
+            />
+            <br />
+            <% } %>
+
+            <button type="submit" class="btn-primary">Submit</button>
+          </div>
+        </form>
+
+        <% if (title==="Log In") { %>
+        <p>Don't have an account? Register Here:</p>
+        <a href="/register"><button class="btn-primary">Register</button></a>
+        <% } else { %>
+        <p>Already have an account? Log In Here:</p>
+        <a href="/login"><button class="btn-primary">Login</button></a>
+        <% } %>
+
+        <br />
+        <% if (errors) { %> <% errors.forEach(error => { %>
+        <li>
+          <p><%= error.msg %></p>
+        </li>
+        <% }) %> <% } %> <% if (message !== null) { %>
+        <p><%= message %></p>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

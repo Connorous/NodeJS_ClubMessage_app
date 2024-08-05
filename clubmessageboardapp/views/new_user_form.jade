@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST')
+    div.form-group
+      label(for='email') Email:
+      input#email.form-control(type='text', placeholder='hacker#hack.com' name='email' required  )
+    div.form-group
+      label(for='display name') Display Name:
+      input#displayname.form-control(type='text', placeholder='hacker123' name='displayname' required  )
+    div.form-group
+      label(for='password') Password:
+      input#password.form-control( placeholder='password' name='password' required )
+    div.form-group
+      label(for='confirm password') Confirm Password:
+      input#confirmpassowrd.form-control( placeholder='password' name='confirmpassowrd' required )
+    if admin
+       div.form-group
+         label(for='admin') Admin?:
+         input#admin.form-control(type="checkbox" name='admin'  )
+       div.form-group
+         label(for='member') Member?:
+         input#member.form-control(type="checkbox" name='member'  )
+    
+
+    button.btn.btn-primary(type='submit') Submit
+
+  br
+  br
+
+
+
+  p #{message}
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

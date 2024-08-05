@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1><% title %></h1>
+    <div style="display: flex; gap: 100px">
+      <%- include('./layout') %>
+      <div>
+        <form method="POST">
+          <div class="form.group">
+            <label for="message">Message</label>
+            <input
+              type="text"
+              placeholder="today was nice"
+              name="message"
+              required
+            />
+            <br />
+            <button class="btn-primary" type="submit">Submit</button>
+          </div>
+        </form>
+
+        <% if (errors) { %> <% errors.forEach(error => { %>
+        <li>
+          <p><%= error.msg %></p>
+        </li>
+        <% }) %> <% } %>
+      </div>
+    </div>
+  </body>
+</html>
